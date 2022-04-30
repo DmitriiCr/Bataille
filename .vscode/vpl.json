@@ -1,0 +1,16 @@
+{
+  "protocol": "https",
+  "hostname": "moodle.caseine.org",
+  "path": "/webservice/rest/server.php",
+  "personalToken": "5896e1fee8d1bdcd324eb0e1e69d353d",
+  "vplId": "42433",
+  "files": [
+    "bataille/PlaceJoueur.java",
+    "bataille/Jeu.java",
+    "bataille/Joueur.java",
+    "bataille/Couleur.java",
+    "bataille/Bataille.java",
+    "bataille/Valeur.java",
+    "bataille/Carte.java"
+  ]
+}

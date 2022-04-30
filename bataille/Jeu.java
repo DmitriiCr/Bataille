@@ -14,52 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-/**
- * Classe d'interface graphique pour le jeu de bataille.
- * Utilise un répertoire "images" contenant les faces des cartes.
- *
- * Contient le main.
- * Vous ne pouvez lancer le main que lorsque toutes les classes ont été complétées
- * (au moins avec les attributs et les signatures des méthodes).
- *
- * Vous devez  compléter dans cette classe
- * 1- la méthode void afficheCarteJoueur(PlaceJoueur joueur, Carte carte)
- * Cette méthode affiche la carte carte sur le label de la carte gauche (carteJoueurGaucheLabel)
- * si joueur == PlaceJoueur.GAUCHE ou sur le label de la carte droite (carteJoueurDroiteLabel) si
- * joueur == PlaceJoueur.DROITE.
- * 	Tip: pour afficher une carte sur un label label, il faut utiliser la méthode
- *    label.setIcon(new ImageIcon(fileName)) où fileName est le nom du fichier où trouver
- *    l'image correspondant à la carte. Attention, fileName doit contenir PATH_TO_IMAGES.
- *
- * 2- la méthode jouer()
- * Cette méthode est la méthode appelée lorsque l'on clique sur le bouton jouer.
- * Cette méthode implément un tour de jeu de bataille:
- * 	- distribution des cartes aux 2 joueurs
- *  - affichage des cartes de chaque joueur
- *  - affichage d'un commentaire sous la forme:
- *  	"nomDuJoueurGauche joue un(e) nomDeLaCarteJouéeParLeJoueurGauche\n
- *  	 nomDujoueurDroite joue un(e) nomDeLaCarteJouéeParLeJoueurDroite."
- *    par exemple:
- *    	Anna Tomie joue un(e) roi de trèfle
- *    	Guy de Michelin joue un(e) as de pique
- *
- *    Tip: pour écrire un commentaire, utiliser la méthode setText(s: String)
- *    de la classe JLabel sur l'attribut commentaire.
- *
- * 3- la méthode remporter()
- * Cette méthode est la méthode appelée lorsque l'on clique sur le bouton remporter.
- * Cette méthode implément ce qu'il se passe lorsque les 2 joueurs ont joués et que l'un d'eux remporte.
- * 	- Appel la méthode gagnant() de la classe Bataille
- *  - S'il y a bataille, écrit un commentaire "Bataille ! on rejoue..."
- *  - Sinon, écrit "C'est le joueur nomDujoueurQuiRemporte qui remporte le pli." et
- *  	vide le set de jeu de ses cartes.
- *
- *    Tip: pour écrire un commentaire, utiliser la méthode setText(s: String)
- *    de la classe JLabel sur l'attribut commentaire.
- *    Tip: pour effacer une carte, il suffit de faire un setIcon(null) sur le label correspondant.
- *
- * @author cfouard
- */
+
 public class Jeu {
 
     static final String PATH_TO_IMAGES = "images/";
@@ -76,14 +31,17 @@ public class Jeu {
 
     Jeu(String nomGauche, String nomDroite) {
         bataille = new Bataille(nomGauche, nomDroite);
-        // A laisser ici, permet d'initialiser l'Interface
-        // utilise nomGauche et nomDroite
+        
         initFrame();
     }
+ /*   la méthode void afficheCarteJoueur(PlaceJoueur joueur, Carte carte)
+    * Cette méthode affiche la carte carte sur le label de la carte gauche (carteJoueurGaucheLabel)
+    * si joueur == PlaceJoueur.GAUCHE ou sur le label de la carte droite (carteJoueurDroiteLabel) si
+    * joueur == PlaceJoueur.DROITE.*/
 
     void afficheCarteJoueur(PlaceJoueur joueur, Carte carte) {
         String file = PATH_TO_IMAGES+carte.getFichierImage();
-    // TODO Complétez la méthode afficheCarteJoueur.
+  
         JLabel carteJoueur = null ;
         if(joueur == PlaceJoueur.GAUCHE ){
             carteJoueur = this.carteJoueurGaucheLabel;
@@ -95,8 +53,19 @@ public class Jeu {
         
     }
 
+   // la méthode jouer()
+/* Cette méthode est la méthode appelée lorsque l'on clique sur le bouton jouer.
+  Cette méthode implément un tour de jeu de bataille:
+  	- distribution des cartes aux 2 joueurs
+   - affichage des cartes de chaque joueur
+   - affichage d'un commentaire sous la forme:
+   	"nomDuJoueurGauche joue un(e) nomDeLaCarteJouéeParLeJoueurGauche\n
+   	 nomDujoueurDroite joue un(e) nomDeLaCarteJouéeParLeJoueurDroite."
+     par exemple:
+     	Anna Tomie joue un(e) roi de trèfle
+    	Guy de Michelin joue un(e) as de pique*/
     void jouer() {
-    // TODO Complétez la méthode jouer()
+  
         this.bataille.distribue();
         this.afficheCarteJoueur(PlaceJoueur.GAUCHE, this.bataille.joueurGauche.joue());
         this.afficheCarteJoueur(PlaceJoueur.DROITE, this.bataille.joueurDroite.joue());
@@ -104,8 +73,17 @@ public class Jeu {
 
     }
 
+  /*  la méthode remporter()
+ * Cette méthode est la méthode appelée lorsque l'on clique sur le bouton remporter.
+ * Cette méthode implément ce qu'il se passe lorsque les 2 joueurs ont joués et que l'un d'eux remporte.
+ * 	- Appel la méthode gagnant() de la classe Bataille
+ *  - S'il y a bataille, écrit un commentaire "Bataille ! on rejoue..."
+ *  - Sinon, écrit "C'est le joueur nomDujoueurQuiRemporte qui remporte le pli." et
+ *  	vide le set de jeu de ses cartes.
+ 
+*/
     void remporter() {
-    // TODO Complétez la méthode remporter()
+
         if(this.bataille.gagnant()==null){
             commentaire.setText("Bataille ! on rejoue...");
         }
